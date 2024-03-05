@@ -66,16 +66,16 @@
 
                 <br />
                 <asp:ListBox ID="lstBanh" SelectionMode="Multiple" runat="server" Width="70%"></asp:ListBox>
-       
-                <asp:Button ID="btnXoa" runat="server" Text="Xóa" OnClick="btnXoa_Click" />
+                <asp:ImageButton ID="btnXoa" ImageUrl="~/img/11-49-05-185__340.png" OnClick="btnXoa_Click" runat="server" Height="36px" Width="55px" />
     </div>
 </div>
        <div class="row mb-2">
         <div class="col-md-12 text-center">
-            <asp:Button ID="btnIn" runat="server" Text="In Đơn Đặt Hàng"/>
+            <asp:Button ID="btnIn" runat="server" Text="In Đơn Đặt Hàng" OnClick="btnIn_Click"/>
     </div>
            <asp:ValidationSummary ID="vsThongBaoLoi" runat="server" />
 </div>
+            <asp:Label ID="lbKetQua" runat="server" Text="Kết Qủa"></asp:Label>
      </div>
          
            

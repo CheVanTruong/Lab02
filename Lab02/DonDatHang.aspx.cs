@@ -23,8 +23,28 @@ namespace Lab02
 
         protected void btnThem_Click(object sender, EventArgs e)
         {
-            string data = $"{ddlBanh.SelectedItem.Text} ({txtSoLuong.Text})";
-            lstBanh.Items.Add(data);
+            bool checkExist = false;
+            char[] delim = { '(', ')' };
+            int soluong;
+            //b1.kiem tra ton tai
+            for (int i = 0; i < lstBanh.Items.Count; i++)
+            {
+                string itemText = lstBanh.Items[i].Text;
+                if (itemText.Contains(ddlBanh.SelectedItem.Text)) {
+                    //xu lyy cong don so luong
+                    string[] arr = itemText.Split(delim);
+                    soluong = int.Parse(txtSoLuong.Text) + int.Parse(arr[1]);
+                    lstBanh.Items[i].Text = $"{ddlBanh.SelectedItem.Text} ({soluong})";
+                    checkExist = true;
+                    break;
+                }
+            }
+            //b2.
+            if (!checkExist)
+            {
+                string data = $"{ddlBanh.SelectedItem.Text} ({txtSoLuong.Text})";
+                lstBanh.Items.Add(data);
+            }
         }
 
         protected void btnXoa_Click(object sender, EventArgs e)
@@ -38,6 +58,29 @@ namespace Lab02
                     lstBanh.Items.RemoveAt(i);  
                 }
             }
+        }
+
+        protected void btnIn_Click(object sender, EventArgs e)
+        {
+            string kq = "";
+            //b1.thu thap thong tin
+            kq += "<h2 class='text-center'> HÓA ĐƠN ĐẶT HÀNG </h2>";
+            kq += "<div class='border border-primary'>";
+            kq += "Khách hàng: <i>" + txtKH.Text + "</i><br>";
+            kq += "Địa chỉ: <i>" + txtDiaChi.Text + "</i><br>";
+            kq += "Mã Số Thuế: <i>" + txtMST.Text + "</i><br><br>";
+
+            kq += "<b>Đặt các loại bánh sau: </br>";
+            foreach (ListItem item in lstBanh.Items)
+            {
+                kq += "<br>" + item.Text;
+            }
+
+            kq += "</div>";
+            kq += "</div>";
+
+            //b2.gui thong tin ve client
+            lbKetQua.Text = kq;
         }
     }
 }
